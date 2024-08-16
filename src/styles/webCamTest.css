@@ -1,0 +1,37 @@
+.Container{
+    background-color: rgb(255, 255, 255);
+    margin-top: 100px;
+    margin-bottom: 100px;
+    border-radius: 10px;
+    background-color:  #d8e6ed;}
+.intructions{
+    text-align: left;
+    margin-top: 100px;
+    color: black;
+    font-size: large;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    line-height: 2; /* Adjust this value for more or less space between lines */
+    border-radius: 10px;
+    background-color: rgb(249, 253, 254);
+   
+
+}
+
+.intructions h2{
+    text-align: center;
+}
+.instruction-text {
+    line-height: 3; /* Adjust this value for more or less space between lines */
+    margin-bottom: 10px; /* Adjust this value to add more space between instructions */
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: large;
+  
+  }
+.CameraBox{
+    background-color: rgb(47, 125, 180);
+}
+
+
+  
+

@@ -1,0 +1,303 @@
+/* Home.css */
+body {
+ /* background-image: url('../images/image2.jpeg') !important;*/
+  background-size: cover; /* Ensures the image covers the whole page */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents repeating the image */
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+.formContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Ensure it takes the full height of the viewport */
+
+
+}
+.formTitles{
+  margin-top: 100px;
+  justify-items: center;
+text-align: center;}
+
+.form-patient {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  font-family: Zain;
+  min-height: 50vh; /* Reduced height */
+  width: 30vw; /* Increased width */
+  text-align: center;
+  padding: 0.5rem; /* Reduced padding */
+  border-radius: 30px;
+  background: #e0eaf7;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  margin: 2.5rem 0   auto; /* Centered with margin */
+  gap: 0.3rem; /* Adjust the gap value as needed */
+}
+
+
+
+
+
+
+
+
+
+
+#submitButton:hover {
+  background-color: rgb(96, 151, 223);
+  transform: scale(1.05);
+}
+
+
+
+
+
+
+
+
+
+.form-patient-group {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  position: static;
+  max-width: 240px;
+}
+
+.form-patient label {
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 15px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.form-patient input {
+  width: calc(100% - 20px);
+    padding: 10px;
+    margin: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-patient input:focus {
+  outline: none;
+}
+.select-gender{
+  display: grid;
+  
+}
+.form-patient-group-select {
+  width: calc(60%-10px); /* Adjust width to fit the container */
+  padding: 11px 10px;
+  font-size: 0.75rem;
+  border: 2px #b2b9f2 solid;
+  border-radius: 5px;
+ 
+  margin-bottom: 0.5rem;
+  outline: none;
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+}
+#submitButton{
+  margin-bottom: 8rem;
+}
+.error-message{
+  color: rgb(164, 21, 21);
+  margin-top: -100px;
+  margin-bottom: 8rem;
+}
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .form-patient {
+    width: 40vw; /* Adjust width */
+    padding: 1rem; /* Adjust padding */
+  }
+}
+
+@media (max-width: 992px) {
+  .form-patient {
+    width: 50vw; /* Adjust width */
+    padding: 0.8rem; /* Adjust padding */
+    
+  }
+}
+
+@media (min-width: 810px) and (max-width: 855px) {
+  .form-patient {
+    width: 50vw; /* Adjust width */
+    padding: 0.8rem; /* Adjust padding */
+
+  }
+  .formContainer {
+    padding: 10px; /* Add padding for smaller screens */
+    margin-top: 200px;
+
+  }
+  .formTitles {
+    margin-top: 10px; /* Adjust margin */
+  }
+}
+
+
+@media (min-width: 760px) and (max-width: 770px) {
+  .formContainer {
+    padding: 10px; /* Add padding for smaller screens */
+    margin-top: 200px; /* Adjust margin */
+
+  }
+  .form-patient {
+    width: 80vw; /* Adjust width */
+    padding: 0.6rem; /* Adjust padding */
+  }
+  .formTitles {
+    margin-top: 1000px; /* Adjust margin */
+  }
+  .form-patient-group {
+    max-width: 100%; /* Make form group take full width */
+  }
+  .form-patient input {
+    width: calc(100% - 10px); /* Adjust input width */
+  }
+}
+@media (max-width: 768px) {
+  .formContainer {
+    padding: 10px; /* Add padding for smaller screens */
+  }
+  .form-patient {
+    width: 80vw; /* Adjust width */
+    padding: 0.6rem; /* Adjust padding */
+  }
+  .formTitles {
+    margin-top: 50px; /* Adjust margin */
+  }
+  .form-patient-group {
+    max-width: 100%; /* Make form group take full width */
+  }
+  .form-patient input {
+    width: calc(100% - 10px); /* Adjust input width */
+  }
+}
+
+@media (max-width: 576px) {
+  .formContainer {
+    padding: 5px; /* Add padding for smaller screens */
+  }
+  .form-patient {
+    width: 90vw; /* Adjust width */
+    padding: 0.5rem; /* Adjust padding */
+  }
+  .formTitles {
+    margin-top: 30px; /* Adjust margin */
+  }
+  .form-patient-group {
+    max-width: 100%; /* Make form group take full width */
+  }
+  .form-patient input {
+    width: calc(100% - 10px); /* Adjust input width */
+  }
+  #submitButton {
+    margin-bottom: 5rem; /* Adjust margin */
+  }
+  .error-message {
+    margin-top: -50px; /* Adjust margin */
+    margin-bottom: 5rem; /* Adjust margin */
+  }
+}
+@media (min-width: 428px) and (max-width: 435px) {
+  .formContainer {
+    padding: 5px; /* Add padding for smaller screens */
+    margin-top: 100px;
+  
+  
+  }
+  .form-patient {
+    width: 95vw; /* Adjust width */
+    padding: 0.3rem; /* Adjust padding */
+    justify-content: center;
+  }
+  .formTitles {
+    margin-top: 250px; /* Adjust margin */
+
+  }
+  .form-patient-group {
+    max-width: 100%; /* Make form group take full width */
+  }
+  .form-patient input {
+    width: calc(100% - 10px); /* Adjust input width */
+  }
+  #submitButton {
+    margin-bottom: 4rem; /* Adjust margin */
+  }
+  .error-message {
+    margin-top: -30px; /* Adjust margin */
+    margin-bottom: 4rem; /* Adjust margin */
+  }
+}
+@media (max-width: 431px) {
+  .formContainer {
+    padding: 5px; /* Add padding for smaller screens */
+    margin-top: 100px;
+    margin-bottom: 100px;
+  
+  
+  }
+  .form-patient {
+    width: 95vw; /* Adjust width */
+    padding: 0.3rem; /* Adjust padding */
+    justify-content: center;
+  }
+  .backButton{
+    margin-bottom: 100px;
+  }
+  .formTitles {
+    margin-top: 150px; /* Adjust margin */
+
+  }
+  .form-patient-group {
+    max-width: 100%; /* Make form group take full width */
+  }
+  .form-patient input {
+    width: calc(100% - 10px); /* Adjust input width */
+  }
+  #submitButton {
+    margin-bottom: 4rem; /* Adjust margin */
+  }
+  .error-message {
+    margin-top: -30px; /* Adjust margin */
+    margin-bottom: 4rem; /* Adjust margin */
+  }
+}
+@media (min-width: 319px) and (max-width: 376px) {
+  .formContainer {
+    padding: 10px; /* Add padding for smaller screens */
+    margin-top: 10px; /* Adjust margin */
+    margin-bottom: 100px;
+
+  }
+  .form-patient {
+    width: 80vw; /* Adjust width */
+    padding: 0.6rem; /* Adjust padding */
+  }
+  .formTitles {
+    margin-top: 200px; /* Adjust margin */
+  }
+  .form-patient-group {
+    max-width: 100%; /* Make form group take full width */
+  }
+  .form-patient input {
+    width: calc(100% - 10px); /* Adjust input width */
+  }
+  .backButton{
+    margin-bottom: 100px;
+  }
+
+}
+
+

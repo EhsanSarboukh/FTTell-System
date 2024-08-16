@@ -1,0 +1,234 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+body, html {
+  height: 100%;
+  
+}
+
+.containerLogin {
+  display: flex;
+  height: calc(100vh - 60px); /* Adjust this value based on the actual height of header and footer */
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  margin-top: 100px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center; /* Center the container vertically */
+}
+
+
+
+.card {
+  background: white;
+  padding: 40px;
+  justify-items: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Increased shadow size and opacity */
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  justify-content: center;
+  margin: 0 auto;
+  background-color: #e0e9ef;
+  opacity: 1;
+
+  background-size: 64px 64px;
+  background-position: 0 0,32px 32px;
+  
+ 
+}
+
+.card h1 {
+  margin-bottom: 40px;
+}
+
+.card h4 {
+  margin-top: -30px;
+  color: rgb(128, 131, 155);
+}
+
+.form-group {
+  margin-bottom: 50px;
+  text-align: left;
+}
+
+.iconCircle {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  color: #331981;
+  margin: 0 auto 20px;
+}
+
+.userIcon {
+  font-size: 30px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 15px;
+  text-align: left;
+}
+
+.formGroup input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.loginPageButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.additionalOptions {
+  text-align: center;
+  margin: 20px 0; /* Unified margin for top and bottom */
+  margin-top: -10px;
+}
+
+.additionalOptions p {
+  margin-top: 50px;
+  margin-bottom: -10px;
+  font-size: medium;
+  color: #331981;
+}
+
+.signUp {
+  text-align: center;
+  margin: 50px 0 20px 0; /* Unified margin for top and bottom */
+}
+
+.signUp p {
+  margin-bottom: -10px;
+  font-size: large;
+  color: #331981;
+}
+
+.signUp button {
+  font-weight: bold;
+}
+
+.loginPageButton button {
+  font-weight: bold;
+}
+
+.backButton {
+  text-align: left;
+  margin-top: -10px;
+
+
+}
+
+.additionalOptions button {
+  font-weight: bold;
+}
+
+.error{
+  color: rgb(154, 36, 36);
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .containerLogin {
+    flex-direction: column;
+    height: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .card {
+    max-width: 450px;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 992px) {
+  .containerLogin {
+    flex-direction: column;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .card {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .containerLogin {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .card {
+    padding: 20px;
+    max-width: 350px;
+  }
+  .formGroup input {
+    width: calc(100% - 10px);
+    padding: 8px;
+  }
+}
+
+@media (max-width: 576px) {
+  .containerLogin {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .card {
+    padding: 15px;
+    max-width: 300px;
+  }
+  .formGroup input {
+    width: calc(100% - 8px);
+    padding: 6px;
+  }
+}
+
+@media (max-width: 430px) {
+  .containerLogin {
+    margin-top: 300px; /* Add top margin to ensure the card is visible */
+    margin-bottom: 20px;
+  }
+  .card {
+    padding: 10px;
+    max-width: 300px;
+  }
+  .formGroup input {
+    width: calc(100% - 6px);
+    padding: 4px;
+  }
+  .card h1 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+  .card h4 {
+    font-size: 0.9em;
+    margin-top: 10px;
+  }
+  .additionalOptions p, .signUp p {
+    font-size: 0.8em;
+  }
+  button {
+    padding: 8px 16px;
+    font-size: 0.9em;
+  }
+}

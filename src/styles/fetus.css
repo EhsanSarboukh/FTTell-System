@@ -1,0 +1,150 @@
+.fetus-form {
+    display: grid;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    font-family: Zain;
+    min-height: 50vh; /* Reduced height */
+    width: 300px; /* Increased width */
+    text-align: center;
+    padding: 0.5rem; /* Reduced padding */
+    border-radius: 30px;
+    background: #e0eaf7;
+    box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+    margin: 2rem auto; /* Centered with margin */
+    gap: 0.3rem; /* Adjust the gap value as needed */
+  }
+  .h2Demo{
+    font-size: 2rem;
+    color: rgb(21, 15, 99);
+    text-align: center;
+    margin-top: 100px;
+  }
+  .fetus-form-group {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    position: static;
+    max-width: 200px;
+  }
+ 
+  .fetus-form-group label {
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  .fetus-form-group input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .fetus-form-group input:focus {
+    outline: none;
+  }
+
+
+
+
+
+
+
+  .button-allign {
+    display: flex;
+    justify-content: center;
+  }
+  .backButton {
+    text-align: left; /* Align the back button to the left */
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  
+  }
+  /* Responsive Styles */
+@media (max-width: 1200px) {
+  .fetus-form {
+    width: 350px; /* Adjust width */
+    padding: 1rem; /* Adjust padding */
+    justify-items: center;
+    justify-content: center;
+
+  }
+
+  .h2Demo {
+    font-size: 1.75rem; /* Adjust font size */
+    margin-top: 80px; /* Adjust margin */
+  }
+}
+
+@media (max-width: 992px) {
+  .fetus-form {
+    width: 600px; /* Adjust width */
+    padding: 0.8rem; /* Adjust padding */
+  }
+  .h2Demo {
+    font-size: 1.5rem; /* Adjust font size */
+    margin-top: 60px; /* Adjust margin */
+  }
+}
+
+@media (max-width: 768px) {
+  .fetus-form {
+    width: 500px; /* Adjust width */
+    padding: 0.6rem; /* Adjust padding */
+  }
+  .h2Demo {
+    font-size: 1.25rem; /* Adjust font size */
+    margin-top: 40px; /* Adjust margin */
+  }
+  .fetus-form-group {
+    max-width: 100%; /* Make form group take full width */
+  }
+  .fetus-form-group input {
+    width: calc(100% - 10px); /* Adjust input width */
+  }
+}
+
+@media (max-width: 576px) {
+  .fetus-form {
+    width: 100%; /* Adjust width */
+    padding: 0.5rem; /* Adjust padding */
+  }
+  .h2Demo {
+    font-size: 1rem; /* Adjust font size */
+    margin-top: 20px; /* Adjust margin */
+  }
+  .fetus-form-group {
+    max-width: 100%; /* Make form group take full width */
+  }
+  .fetus-form-group input {
+    width: calc(100% - 10px); /* Adjust input width */
+  }
+}
+
+@media (max-width: 430px) {
+  
+  .fetus-form {
+    width: 100%; /* Adjust width */
+    padding: 0.3rem; /* Adjust padding */
+  }
+
+  .h2Demo {
+    font-size: 0.875rem; /* Adjust font size */
+    margin-top: 250px; /* Adjust margin */
+  }
+  .fetus-form-group {
+    max-width: 100%; /* Make form group take full width */
+  }
+  .fetus-form-group input {
+    width: calc(100% - 10px); /* Adjust input width */
+  }
+  .backButton {
+    bottom: 5px;
+    left: 5px;
+  }
+}

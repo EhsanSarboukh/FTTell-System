@@ -1,0 +1,115 @@
+/* Error Message */
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+}
+.card {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  max-width: 100%;
+  text-align: center;
+  margin-top: 20px; /* Add space between the card and the header */
+}
+/* The message box is shown when the user clicks on the password field */
+
+.message {
+  color: #000;
+  padding: 20px;
+  margin-left: 20px; /* Add space between the message and the card */
+  width: 300px; /* Set a fixed width for the message */
+
+}
+
+.message h3 {
+  margin-top: 0;
+  color: rgb(175, 116, 136);
+}
+.checkIcon {
+  font-size: 20px; /* Adjust the size of the icon as needed */
+  color: green;
+}
+.backButton {
+  text-align: left; /* Align the back button to the left */
+
+}
+.pForCode{
+  color: #0c0d55;
+  margin-bottom: 50px;
+}
+.message p {
+  margin: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  text-align: left;
+  color:  rgb(201, 156, 170);
+}
+.formGroup label {
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 15px;
+  text-align: left; /* Align the text to the left */
+}
+
+.formGroup input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+  margin-top: 150px; 
+  margin-bottom: 100px; 
+}
+
+
+#message p {
+  padding: 10px 35px;
+  font-size: 18px;
+}
+
+.containerCode {
+  background-color: #e0e9ef;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Increased shadow size and opacity */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  max-width: 100%;
+  text-align: center;
+  margin-top: 20px; /* Add space between the card and the header */
+
+}
+.h4{
+  color: rgb(164, 34, 34);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .containerCode{
+    margin-top: 200px;
+  }
+  .card {
+    padding: 20px;
+  }
+  .card h2 {
+    font-size: 1.5em;
+  }
+  .card button {
+    font-size: 1em;
+  }
+
+}
+.card h1 {
+  margin-bottom: 40px;
+  color: #19126a;
+}
