@@ -1,0 +1,182 @@
+
+  .footer {
+    background-color: #0f75bc;
+    color: #293e55;
+    padding: 10px;
+    text-align: center;
+    
+  }
+  p{
+    color: #9ab4d0;
+   font-size: 1.5rem;
+   font-weight: bold;
+  }
+  .footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  
+  }
+  .elementFooter{
+    display: flex;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+
+
+  }
+  .footer-section {
+    margin: 10px;
+    text-align: center;
+   
+  }
+  
+  .footer-logo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+   
+  }
+ 
+  
+ul{
+  text-decoration: none;
+  display: flex; /* Use Flexbox */
+  list-style-type: none; /* Remove bullet points */
+
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+  display: flex; /* Use Flexbox */
+  justify-content: center;
+  color: #f0f0f0;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+a{
+  text-decoration: none;
+  color: #f0f0f0;
+}
+  .footer-link:hover {
+    text-decoration: underline;
+  }
+  .footer-link {
+    list-style-type: none; /* Remove bullet points */
+    text-decoration: none;
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    display: flex; /* Use Flexbox */
+   
+    gap: 20px;
+  }
+  
+  .footer-link li {
+    padding: 10px 20px; /* Optional padding for list items */
+    background-color: #f0f0f0; /* Optional background color for list items */
+    border: 1px solid #ccc; /* Optional border for list items */
+  }
+
+
+/* Responsive Styles */
+
+/* Large Laptops (1200px and up) */
+@media (max-width: 1200px) {
+  .Footer p {
+    font-size: 13px;
+  }
+
+  .Footer a {
+    margin: 0 8px;
+  }
+}
+
+/* Laptops (992px to 1199px) */
+@media (max-width: 992px) {
+  .Footer {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 0;
+  }
+
+  .Footer p {
+    font-size: 12px;
+  }
+
+  .Footer a {
+    margin: 5px 0;
+  }
+}
+
+/* Laptops and Tablets (768px to 991px) */
+@media (max-width: 900px) {
+  .Footer {
+    padding: 10px 0;
+  }
+
+  .Footer p {
+    font-size: 12px;
+  }
+
+  .Footer a {
+    margin: 5px 0;
+  }
+}
+
+/* Tablets and Large Phones (576px to 767px) */
+@media (max-width: 768px) {
+  .Footer {
+    flex-direction: column;
+    padding: 10px 0;
+  }
+
+  .Footer p {
+    font-size: 12px;
+  }
+
+  .Footer a {
+    margin: 5px 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    padding: 10px 0;
+  position: fixed;
+    bottom: 0;
+    width: 100%;
+  
+   }
+
+  .Footer p {
+    font-size: 12px;
+  }
+
+  .Footer a {
+    margin: 5px 0;
+  }
+}
+
+
+
+/* Phones (less than 576px) */
+@media (max-width: 576px) {
+  .footer {
+ 
+    padding: 10px 0;
+    bottom: 0;
+        position: fixed;
+
+   
+    
+  }
+
+  .Footer p {
+    font-size: 11px;
+  
+  }
+
+  .Footer a {
+    margin: 5px 0;
+
+  }
+}

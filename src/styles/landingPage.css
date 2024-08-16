@@ -1,0 +1,240 @@
+/* Apply box-sizing to all elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure HTML and body take the full viewport height and have no margins */
+html, body {
+  height: 100%;
+  margin: 0 ;
+  padding: 0;
+ 
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Container Style */
+.containerLanding {
+  display: flex;
+  flex-direction: column; /* Changed from row to column */
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  margin: 0 ; /* Remove margin */
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  background-size: cover; /* Cover the entire screen */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat;
+  background-image: url("../images/landingOption2.jpg");
+  margin-left: -15px;
+
+
+
+}
+
+.detailed {
+  margin-bottom: 70px;
+}
+
+/* Detailed Style */
+.detailed p {
+  margin-bottom: 10px; /* Adjust the value to control the space */
+  font-weight: bold;
+  font-size: x-large;
+  color: rgb(9, 9, 82);
+}
+
+/* Button Style */
+button {
+  margin-top: 20px; /* Adjust the value to control the space */
+ 
+}
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .detailed p {
+    font-size: large;
+  }
+}
+
+@media (max-width: 992px) {
+  .detailed p {
+    font-size: medium;
+  }
+  .containerLanding{
+    display: flex;
+    flex-direction: column; /* Changed from row to column */
+    align-items: center;
+    justify-content: center;
+ 
+    text-align: center;
+  
+   margin-top: -400px;
+   
+   width: 800px;
+   height: 400px;
+ 
+   
+  
+  }
+}
+
+@media (min-width: 910px) and (max-width: 960px) {
+  .detailed p {
+    font-size: medium;
+  }
+  .containerLanding{
+    display: flex;
+    flex-direction: column; /* Changed from row to column */
+    align-items: center;
+    justify-content: center;
+ 
+    text-align: center;
+  
+   margin-top: -850px;
+   
+   width: 1000px;
+   height: 400px;
+ 
+   
+  
+  }
+}
+
+@media (max-width: 769px) {
+  .containerLanding {
+    background-size: contain; /* Ensure the entire background image is visible */
+  }
+  .detailed p {
+    font-size: small;
+  }
+  .containerLanding{
+  
+   
+  
+   margin-top: -250px;
+   
+   width: 100vw;
+   height: 400px;
+  
+ 
+   
+  
+  }
+ 
+}
+@media (min-width: 520px) and (max-width: 545px) {
+  .detailed p {
+    font-size: x-small;
+    
+    
+  }
+  .containerLanding{
+    display: flex;
+    flex-direction: column; /* Changed from row to column */
+    align-items: center;
+    justify-content: center;
+ 
+    text-align: center;
+  
+   margin-top: -120px;
+   
+   width: 900px;
+   height: 400px;
+ 
+   
+  
+  }
+}
+
+@media (max-width: 576px) {
+  .containerLanding {
+    height: auto; /* Allow the container to adjust its height */
+    padding: 20px;
+  }
+  .detailed {
+    margin-bottom: 50px;
+  }
+  .detailed p {
+    font-size: smaller;
+  }
+  button {
+    padding: 8px 16px;
+    font-size: 0.9em;
+  }
+  
+}
+
+@media (max-width: 430px) {
+  .detailed p {
+    font-size: x-small;
+  }
+  button {
+    padding: 6px 12px;
+    font-size: 0.8em;
+  }
+  .containerLanding{
+  
+  
+   margin-top: -60px;
+   
+   width: 600px;
+   height: 400px;
+ 
+   
+  
+  }
+ 
+}
+@media (min-width: 410px) and (max-width: 432px) {
+  .detailed p {
+    font-size: x-small;
+  }
+  button {
+    padding: 6px 12px;
+    font-size: 0.8em;
+  }
+  .containerLanding{
+
+  
+   margin-top: -180px;
+   
+   width: 600px;
+   height: 400px;
+
+   
+  
+  }
+ 
+}
+
+@media (min-width: 1020px) and (max-width: 1150px) {
+  .detailed p {
+    font-size: larger; /* Adjust the font size for better readability */
+  }
+
+  .containerLanding {
+    display: flex;
+    flex-direction: column; /* Maintain column layout */
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    width: 90vw; /* Adjust width to maintain responsiveness */
+    height: 80vh; /* Adjust height to fit content better */
+    margin-top: -200px; /* Adjust margin to position container properly */
+  }
+
+  button {
+    padding: 10px 20px; /* Adjust padding for larger buttons */
+    font-size: 1em; /* Adjust font size for better readability */
+  }
+}
+
+
+
+

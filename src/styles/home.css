@@ -1,0 +1,48 @@
+.home-container {
+    display: grid;
+    place-items: center; /* Centers content both horizontally and vertically */
+
+      height: calc(80vh - 60px); /* Adjust this value based on the actual height of header and footer */
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    align-items: center;
+    margin-top: 0px; 
+    margin-bottom: 300px; 
+    justify-content: center; /* Center the container vertically */
+    margin-left: 0cm;
+    /*align-items: stretch;*/
+    background-color: #e5e5f7;
+opacity: 0.7;
+background-image:  radial-gradient(#9cbbd2 1.5px, transparent 1.5px), radial-gradient(#9cbbd2 1.5px, #e5e5f7 1.5px);
+background-size: 60px 60px;
+background-position: 0 0,30px 30px;
+   }
+.home-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #05226d;
+    margin-top: 8rem;
+    text-align: center;
+    
+}
+
+.home-description {
+    font-size: 1.2rem;
+    margin-top: -150px;
+    color: #000;
+    text-align: center;
+
+}
+.highlight {
+    color: rgb(18, 92, 54); /* Change this to your desired color */
+}
+.home-button {
+    background-color: #062e58;
+    margin-top: -150px;
+    width: fit-content;
+    align-items: center;
+    align-self: center; /* This centers the button horizontally */
+
+}

@@ -1,38 +1,141 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.Container {
+  align-items: center;
   min-height: 100vh;
+  margin: 0 10px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  background-color: #262b36;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+
+}
+
+button {
+  margin-top: 350px;
+  padding: 10px 40px;
+  border: none;
+  background-color: rgb(65, 104, 187);
+  color: #fff;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background-color: rgb(96, 151, 223);
+  transform: scale(1.05);
+}
+
+.Webcam {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.CameraBox {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 150px;
+  height: 150px;
+  background-color: #06bfe9;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.CameraBox:hover {
+  transform: scale(1.05);
+  background-color: #04a5d5;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.CameraIcon {
+  transition: transform 0.3s ease;
+}
+
+.CameraBox:hover .CameraIcon {
+  transform: scale(1.1);
+}
+
+img {
+  width: 400px;
+  object-fit: cover;
+  height: 400px;
+  border-radius: 15px;
+}
+
+.App {
+  display: flex;
+  align-items: center;
+  width:100vw;
+  background-size: 100% 100%;
+  background-position: bottom left;
+  justify-content: center;
+  background-color: #f1f2f9;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+  font-family: Zain;
+
+}
+
+
+/* Responsive Styles for .App */
+@media (max-width: 1200px) {
+  .App {
+    padding: 20px;
+    background-size: cover; /* Adjust background size for large screens */
   }
 }
+
+@media (max-width: 992px) {
+  .App {
+    flex-direction: column;
+    padding: 15px;
+    background-size: contain; /* Adjust background size for medium screens */
+  }
+}
+
+@media (max-width: 769px) {
+  .App {
+    padding: 10px;
+    background-size: contain; /* Ensure background fits within the screen */
+   
+    width: 1000px;
+    
+  }
+}
+@media (min-width: 520px) and (max-width: 545px) {
+  .App{
+    padding: 10px;
+    background-size: contain; /* Ensure background fits within the screen */
+   
+    width: 600px;
+  }
+}
+@media (max-width: 576px) {
+  .App {
+    padding: 5px;
+    background-size: contain; /* Ensure background fits within the screen */
+  }
+}
+
+@media (max-width: 432px) {
+  .App {
+    padding: 5px;
+    background-size: contain; /* Ensure background fits within the screen */
+    justify-items: center;
+    justify-content: center;
+    width: 600px;
+   
+  }
+}
+

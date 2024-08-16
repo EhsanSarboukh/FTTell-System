@@ -1,0 +1,275 @@
+/* Global Styles */
+body {
+    background-color: #f5f5f5;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    scroll-behavior: smooth; /* Enable smooth scrolling */
+}
+
+/* Header and Footer Styles */
+header, footer {
+    background-color: #0f75bc;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    z-index: 1000; /* Higher z-index for the header */
+    position: relative; /* Ensure header stays on top */
+}
+
+header h1, footer p {
+    margin: 0;
+}
+
+/* Main Content Styles */
+.about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    min-height: 100vh; /* Center vertically */
+}
+
+.about-container img.logo {
+    max-height: 250px; /* Adjust the height as needed to make the logo smaller */
+}
+
+
+
+.about-container p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 20px 0; /* Reduce margin between paragraphs */
+    margin-top: -50px;
+    color: rgb(53, 57, 132);
+}
+
+/* Section Styles */
+section {
+    padding: 100px 20px; /* Increase padding to create bigger spaces between sections */
+    margin-top: 100px; /* Increase margin to create bigger spaces between sections */
+}
+
+section h2 {
+    font-size: 2em;
+    color: #0f75bc;
+}
+
+section p {
+    font-size: 1em;
+    line-height: 1.6;
+    max-width: 800px;
+}
+
+/* Card Styles */
+.card {
+    width: 1000px;
+    height: auto;
+    position: relative;
+    padding: 25px;
+    transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+    background-image: linear-gradient(to right top, #e6eaeb, #e6ebec, #e6ecee, #e6eeef, #e6eff0);
+    cursor: pointer;
+    margin: 20px auto;
+    z-index: 1; /* Lower z-index for the card */
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+
+.card-header span:first-child {
+    word-break: break-all;
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 135%;
+    color: rgba(87, 77, 51, 0.66);
+}
+
+.card-header span:last-child {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 135%;
+    color: rgba(87, 77, 51, 0.33);
+}
+
+.card p, .card a {
+    margin: 10px 0; /* Spacing between lines */
+    color: #000; /* Black text color */
+}
+
+.card a {
+    text-decoration: none;
+    color: #0f75bc;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .card {
+    width: 800px;
+  }
+}
+
+@media (max-width: 992px) {
+  .card {
+    width: 600px;
+  }
+  .about-container p, section p {
+    font-size: 1em;
+  }
+  section {
+    padding: 80px 20px;
+    margin-top: 80px;
+  }
+  section h2 {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 900px) {
+  .card {
+    width: 500px;
+  }
+  .about-container p, section p {
+    font-size: 0.9em;
+  }
+  section {
+    padding: 70px 20px;
+    margin-top: 70px;
+  }
+  section h2 {
+    font-size: 1.4em;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 90%;
+  }
+  header, footer {
+    padding: 15px;
+  }
+  #impact-reports{
+    margin-bottom: 100px;
+  }
+  .about-container {
+    padding: 30px 15px;
+  }
+  .about-container img.logo {
+    max-height: 200px;
+  }
+  section {
+    padding: 60px 15px;
+    margin-top: 60px;
+  }
+}
+
+@media (max-width: 576px) {
+  header h1, footer p {
+    font-size: 1.2em;
+  }
+  .about-container p, section p {
+    font-size: 0.9em;
+  }
+  .card-header span:first-child, .card-header span:last-child {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-container img.logo {
+    max-height: 150px;
+    
+  }
+  .about-container p, section p {
+    font-size: 0.8em;
+    margin-top: 10px;
+  }
+  #impact-reports{
+    margin-bottom: 100px;
+  }
+  .card-header span:first-child, .card-header span:last-child {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .about-container img.logo {
+    max-height: 100px;
+  }
+  .about-container p, section p {
+    font-size: 0.7em;
+    margin-top: 10px;
+  }
+  #impact-reports{
+    margin-bottom: 100px;
+  }
+  .card {
+    width: 100%;
+    padding: 15px;
+  }
+  .card-header span:first-child, .card-header span:last-child {
+    font-size: 11px;
+  }
+  section {
+    padding: 40px 15px;
+    margin-top: 40px;
+  }
+  section h2 {
+    font-size: 1.2em;
+  }
+  .about-container {
+    padding: 20px 10px;
+    margin: 0 auto;
+    max-width: 90%;
+    justify-content: center;
+    align-items: center; /* Use align-items to center flex items */
+  }
+  .card {
+    justify-content: center;
+    width: 90%;
+    margin: 10px auto; /* Use auto margins to center the card */
+  }
+}
+
+@media (max-width: 360px) {
+  .about-container img.logo {
+    max-height: 120px;
+  }
+  #impact-reports{
+    margin-bottom: 100px;
+  }
+  .about-container p, section p {
+    font-size: 0.7em;
+    margin-top: 10px;
+  }
+  .card-header span:first-child, .card-header span:last-child {
+    font-size: 11px;
+  }
+}
