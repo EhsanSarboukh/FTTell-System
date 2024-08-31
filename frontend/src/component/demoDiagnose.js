@@ -1,3 +1,4 @@
+//This component is designed to allow users to input fetus-related data and simulate a diagnostic process.
 import React, { useState } from 'react';
 import Header from "../pages/header";
 import Footer from "../pages/footer";
@@ -7,7 +8,8 @@ import axios from 'axios';
 import "../styles/fetus.css";
 
 const Demo = () => {
-    localStorage.setItem('canAccessRegister', 'false'); // Set flag in local storage
+    localStorage.setItem('canAccessRegister', 'false'); // Set flag in local storage to prevent all visitors from accessing pediatricians' screens
+    // State variables for user input
     const [birthWeightFetus, setBirthWeight] = useState('');
     const [week16Mass, setWeek16Mass] = useState('');
     const [week16Length, setWeek16Length] = useState('');
@@ -21,6 +23,7 @@ const Demo = () => {
         setErrorMessage(''); // Clear previous error messages
 
         try {
+            // Send fetus data to the server via a POST request
             const response = await axios.post('http://localhost:5001/demoFinalResult/demoFetuslResult', {
                 birthWeightFetus,
                 week16Mass,
@@ -28,19 +31,20 @@ const Demo = () => {
                 week32Mass,
                 week32Length
             });
-            console.log('Response:', response.data);
-
+          
+            //  If the response is successful, navigate to the next screen with the result
             if (response.data.type === 'success') {
                 navigate('/DemoPatientForm', { state: { result2: response.data.result2 } });
             } else {
                 setErrorMessage(response.data.message);
             }
         } catch (error) {
+            // Handle errors during the request
             setErrorMessage(`An error occurred: ${error.message}`);
             console.error('An error occurred:', error);
         }
     };
-
+    //Handles the "Back" button click, navigating the user to the previous screen.
     const handleClickToBack = () => {
         navigate('/');
     };
