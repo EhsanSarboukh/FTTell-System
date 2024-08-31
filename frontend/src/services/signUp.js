@@ -7,6 +7,7 @@ import Header from "../pages/header";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons'; // Import the check icon
 
+// define and manage the state for various inputs and messages within the SignUp component, enabling the component to handle user input, perform validations
 const SignUp = () => {
   const [id, setId] = useState('');
   const [medicalClinic, setMedicalClinic] = useState('');
@@ -21,14 +22,17 @@ const SignUp = () => {
     uppercase: false,
   });
   const navigate = useNavigate();
-  
+
+  // handleClickToBack function is activated when the back button is clicked
   const handleClickToBack = () => {
     navigate('/login');
   };
-  
+
+  // manage and validate the password input by the user in real-time as they type it into the form
   const handlePasswordChange = (e) => {
     const value = e.target.value;
     setPassword(value);
+    // The password must meet the following criteria
     setPasswordValidation({
       length: value.length >= 8,
       number: /\d/.test(value),
@@ -37,30 +41,30 @@ const SignUp = () => {
     });
   };
 
+  // handleSignUp function is activated when the Sign Up button is clicked
   const handleSignUp = async (e) => {
     e.preventDefault();
     setErrorMessage(''); // Clear previous error messages
-
     const { length, number, lowercase, uppercase } = passwordValidation;
 
-    if (!length || !number || !lowercase || !uppercase) {
+    if (!length || !number || !lowercase || !uppercase) { // Check if the password contains all the criteria
       setErrorMessage('Password does not meet the required criteria.');
       return;
     }
 
     try {
-      const response = await axios.post('http://localhost:5001/pediatrician/register', { id, username, password, medicalClinic });
-      console.log('Response:', response.data);
+      const response = await axios.post('http://localhost:5001/pediatrician/register', { id, username, password, medicalClinic }); // request is being sent to the server with the pediatrician's data
+     
 
-      if (response.data.type === 'success') {
+      if (response.data.type === 'success') { // If the registration was successful, navigate to the login page 
         navigate('/login');
-        alert("Your registration has been received in the system, please log in to start the diagnostic process");
+        alert("Your registration has been received in the system, please log in to start the diagnostic process"); // show a pop up message 
 
      
       } else {
         setErrorMessage(response.data.message || 'Invalid registration details.');
       }
-    } catch (error) {
+    } catch (error) { // catching errors
       if (error.response && error.response.status === 400) {
         setErrorMessage('Invalid registration details.');
       } else {
