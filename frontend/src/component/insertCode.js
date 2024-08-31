@@ -1,3 +1,5 @@
+//This component allows pediatricians to enter an access code to gain permission to register on the system.
+//The code is verified with the server, and if validated, the user is granted access to the registration page.
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -7,31 +9,37 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const InsertCode = () => {
+  //Set a flag in local storage to indicate restricted access
   localStorage.setItem('canAccessRegister', 'false'); // Set flag in local storage
-
+  //State variables to manage the access code and any error messages
   const [code, setCode] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
+  //Handles the "Back" button click, navigating the user back to the login screen
   const handleClickToBack = () => {
     navigate('/login');
   };
-
+  
+  // handleSignUpAccess Function handles the form submission to validate the access code
   const handleSignUpAccess = async (e) => {
     e.preventDefault();
     setErrorMessage(''); // Clear previous error messages
     try {
+      //Send the access code to the server for validation
       const response = await axios.post('http://localhost:5001/createCode/checkCode', { code }); 
-      console.log("this is the res: ", response.data);
+      //If the code is valid, grant access and navigate to the registration page
       if (response.data.status === 'Success') {
         localStorage.setItem('canAccessRegister', 'true'); // Set flag in local storage
         navigate('/register'); // Navigate to register route
       } else {
+        // If the code is invalid, deny access and display an error message
         localStorage.setItem('canAccessRegister', 'false'); // Set flag in local storage
 
         setErrorMessage(response.data.message || 'Invalid code.');
       }
     } catch (error) {
+      //Handle errors during the request
       if (error.response && error.response.status === 401) {
         setErrorMessage('Invalid code.');
       } else {
