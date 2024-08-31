@@ -1,3 +1,4 @@
+//This component provides a form for entering patient-related data, particularly for a demo diagnosis scenario.
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from 'axios';
@@ -7,7 +8,9 @@ import "../styles/form.css";
 
 
 const DemoPatientForm = () => {
+    //  Set flag in local storage to prevent all visitors from accessing pediatricians' screens
     localStorage.setItem('canAccessRegister', 'false'); // Set flag in local storage
+    //State variables for managing input data and error messages
     const [errorMessage, setErrorMessage] = useState('');
     const location = useLocation();
     const [ageInMonths, setAgeInMonths] = useState(0);
@@ -28,26 +31,30 @@ const DemoPatientForm = () => {
         gender: '',
     });
     const navigate = useNavigate();
-
+    // Handles changes to the form inputs by updating the corresponding state variable.
     const handleChange = (event) => {
         const { name, value } = event.target;
         setInputs((values) => ({ ...values, [name]: value }));
     };
-  
+    //Navigates the user back to the demo diagnosis screen
     const handleClickToBack = () => {
         navigate('/demoDiagnose');
     };
+    //Handles form submission by validating the inputs
     const handleSubmit = async (event) => {
         event.preventDefault()
         setErrorMessage(''); // Clear previous error messages
         if (!validateForm()) return;
 
         const result2 = location.state?.result2; // Get the result from the state
+        //calculating the patient's age in months
         const ageInMonths = calculateAgeInMonths(inputs.birthDate);
         setAgeInMonths(ageInMonths);
+
+        // create a new object called data that combines all the properties of the inputs object with an additional property ageInMonths.
         const data= {...inputs,ageInMonths }
         try {
-
+            //Send the input data to the server via a POST request
             const response = await axios.post('http://localhost:5001/demoFinalResult/demoPatientResult',data); 
             
     
@@ -59,11 +66,13 @@ const DemoPatientForm = () => {
             const combinedResults = { ...result2, ...response.data.result1 }; // Combine results
             navigate("/DemoFinalResult", { state: { result: combinedResults } });
         } catch (error) {
+            //Handle errors and display an appropriate message
             setErrorMessage(`An error occurred: ${error.message}`);
             console.error('An error occurred:', error);
         }
     };
-    
+
+    //Calculates the age of the patient in months based on the provided birth date.
     const calculateAgeInMonths = (birthDate) => {
         const birth = new Date(birthDate);
         const now = new Date();
@@ -71,6 +80,8 @@ const DemoPatientForm = () => {
         const months = now.getMonth() - birth.getMonth();
         return years * 12 + months;
     };
+
+    //Validates the required form fields to ensure all necessary information is provided.
     const validateForm = () => {
         const requiredFields = ['weight', 'birthDate', 'birthWeight', 'gender', 'motherHeight', 'motherWeight', 'motherAge'];
         for (let field of requiredFields) {
