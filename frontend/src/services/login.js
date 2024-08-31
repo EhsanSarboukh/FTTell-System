@@ -8,36 +8,36 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const Login = () => {
-  localStorage.setItem('canAccessRegister', 'false'); // Set flag in local storage
+  localStorage.setItem('canAccessRegister', 'false'); // Set flag in local storage, this flag is useful for restricting access to authorized pediatrician screens.
 
   const [username, setUsernameForDoctor] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
-
+  
+  // handleClickToRegister function is activated when the Sign Up button is clicked
   const handleClickToRegister = () => {
     navigate('/checkCode');
   };
 
+  // handleClickToDemo function is activated when the demo diagnose button is clicked
   const handleClickToDemo = () => {
     navigate('/demoDiagnose');
   };
 
+  // handleLoginSubmit function is activated when the Login button is clicked
   const handleLoginSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // stop the form's default submission process so that the form data can be handled through JavaScript
     setErrorMessage(''); // Clear previous error messages
     try {
-      const response = await axios.post('http://localhost:5001/pediatrician/login', { username, password });
-      console.log('Response: this is the res ppppp:', response.data['username']);
-      if (response.data.accessToken) {
-        localStorage.setItem('token', response.data.accessToken);
-        console.log("this is the response.data:" + response.data);
-
+      const response = await axios.post('http://localhost:5001/pediatrician/login', { username, password }); // request is being sent to the server with the user's data
+      if (response.data.accessToken) { // check if the server provides an accessToken
+        localStorage.setItem('token', response.data.accessToken); // set the token in local storage 
         navigate('/home');
-      } else {
+      } else { // If the user does not exist in the system, the server does not issue a token, and an appropriate message is displayed.
         setErrorMessage(response.data.message || 'Invalid username or password.');
       }
-    } catch (error) {
+    } catch (error) { // catching errors
       if (error.response && error.response.status === 401) {
         setErrorMessage('Invalid username or password.');
       } else {
