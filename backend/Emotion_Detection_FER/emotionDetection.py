@@ -1,20 +1,26 @@
-import cv2
-from fer import FER
+import cv2 # enabling  to perform tasks such as object detection, facial recognition
+from fer import FER # designed for detecting emotions from facial expressions 
 import json
 import numpy as np
-import mediapipe as mp
+import mediapipe as mp #It offers pre-built solutions for tasks such as face detection.
 
 
 def emotionDetection(ID):
     # Load the FER detector
     detector = FER()
     # Initialize mediapipe's face mesh
-    mp_face_mesh = mp.solutions.face_mesh # חדש
-    face_mesh = mp_face_mesh.FaceMesh(static_image_mode=False, max_num_faces=1, refine_landmarks=True) # חדש
-
+    # mp_face_mesh is a reference to the face mesh module in MediaPipe, which provides a pre-built solution for detecting facial landmarks.
+    mp_face_mesh = mp.solutions.face_mesh 
+    # Create a FaceMesh object with specific parameters:
+    # - static_image_mode=False: Indicates that the input images are from a video stream (not static images).
+    # - max_num_faces=1: Limits the detection to one face per frame.
+    # - refine_landmarks=True: Enables refining the detected landmarks to provide more accurate facial features.
+    face_mesh = mp_face_mesh.FaceMesh(static_image_mode=False, max_num_faces=1, refine_landmarks=True) 
+    
+    # Construct the path to the video file using the provided ID
     video_path= './Emotion_Detection_FER/videos/'+ID + '.mp4'
     print(f"Video file path: {video_path}")
-    
+    #Open the video file
     video_capture = cv2.VideoCapture(video_path)
 
     # Check if the video file opened successfully
@@ -24,9 +30,9 @@ def emotionDetection(ID):
 
     # List to store emotion detection results for each frame
     emotion_results = []
-    upper_face_movements = 0 # חדש 
-    lower_face_movements = 0 # חדש 
-    previous_landmarks = None # חדש 
+    upper_face_movements = 0  
+    lower_face_movements = 0  
+    previous_landmarks = None  
 
     # Read video frames until the video ends
     while video_capture.isOpened():
@@ -49,38 +55,37 @@ def emotionDetection(ID):
             
             # Append the modified emotion to emotion_results
             emotion_results.append(emotion)
+        #Convert the frame to RGB as required by mediapipe
+        rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB) 
+        results = face_mesh.process(rgb_frame) #Process the frame with mediapipe's face mesh
+        if results.multi_face_landmarks: #Check if face landmarks are detected
+            for face_landmarks in results.multi_face_landmarks:
+                #Extract the landmark coordinates and convert them to integer pixel positions
+                current_landmarks = [(int(point.x * frame.shape[1]), int(point.y * frame.shape[0])) for point in face_landmarks.landmark] 
 
-        rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB) #חדש
-        results = face_mesh.process(rgb_frame)# חדש 
-        if results.multi_face_landmarks:# חדש
-            for face_landmarks in results.multi_face_landmarks:#חדש 
-                current_landmarks = [(int(point.x * frame.shape[1]), int(point.y * frame.shape[0])) for point in face_landmarks.landmark] # חדש 
-
-                if previous_landmarks is not None:# חדש
-                    # Define upper face (eyes and eyebrows) and lower face (mouth, jaw, chin) landmarks indices
+                if previous_landmarks is not None:
+                    # Define upper face (eyes, eyebrows, forehead) and lower face (mouth, jaw, chin) landmarks indices
                     upper_indices = list(range(33, 133)) + list(range(0, 10)) + list(range(200, 230))  # Eyes, eyebrows, and forehead landmarks
                     lower_indices = list(range(0, 33)) + list(range(164, 176))  # Mouth, jaw, chin landmarks חדש
 
-                    # Calculate movements for upper face (eyes and eyebrows)
-                    #חדש
+                    # Calculate the movements for upper face landmarks
                     upper_face_movement = sum(
                         [abs(current_landmarks[i][0] - previous_landmarks[i][0]) + abs(current_landmarks[i][1] - previous_landmarks[i][1]) for i in upper_indices]
                     )
 
                     # Calculate movements for lower face (mouth, jaw, chin)
-                    #חדש 
                     lower_face_movement = sum(
                         [abs(current_landmarks[i][0] - previous_landmarks[i][0]) + abs(current_landmarks[i][1] - previous_landmarks[i][1]) for i in lower_indices]
                     )
 
                     # Update counters based on movement threshold
-                    threshold = 5  # Example threshold חדש
-                    if upper_face_movement > threshold:# חדש
-                        upper_face_movements += 1 # חדש
-                    if lower_face_movement > threshold: #חדש
-                        lower_face_movements += 1 #חדש
+                    threshold = 5  # Example threshold 
+                    if upper_face_movement > threshold:
+                        upper_face_movements += 1 #Increment counter if upper face movement exceeds threshold
+                    if lower_face_movement > threshold: 
+                        lower_face_movements += 1 #Increment counter if lower face movement exceeds threshold
 
-                previous_landmarks = current_landmarks #חדש   
+                previous_landmarks = current_landmarks   
 
     # Release the video capture object
     video_capture.release()
@@ -92,5 +97,5 @@ def emotionDetection(ID):
         json.dump(emotion_results, file)
 
     print(f'Emotion detection results saved to {json_path}')
-    more_frequent_movements = "upper" if upper_face_movements > lower_face_movements else "lower" # חדש
-    print("The more frequent movements are in the "+  more_frequent_movements + " face region.") # חדש 
+    more_frequent_movements = "upper" if upper_face_movements > lower_face_movements else "lower" 
+    print("The more frequent movements are in the "+  more_frequent_movements + " face region.") 
