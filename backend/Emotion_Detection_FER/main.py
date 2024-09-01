@@ -2,9 +2,7 @@ import sys
 import emotionDetection
 import findMostFrequency
 import findPlot
-#emotionDetection.emotionDetection('roseel')
-#findMostFrequency.findMostFrequency('roseel')
-#findPlot.createPlot('roseel')
+
 
 def main(id):
     # Call emotionDetection function with id
@@ -15,12 +13,14 @@ def main(id):
     
     # Call findPlot function with id
     # findPlot.createPlot(id)
-
+# This block checks if an ID was provided as a command-line argument when running the script.
 if __name__ == "__main__":
     
     if len(sys.argv) > 1:
+        #Extract the ID from the command-line arguments
         id = sys.argv[1]
         print(id)
+        #Call the main function with the extracted ID
         main(id)
     else:
         print("No ID provided")
