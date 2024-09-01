@@ -1,6 +1,6 @@
-const { spawn } = require('child_process');
-const express = require('express');
-const router = express.Router();
+const { spawn } = require('child_process'); // Import the 'child_process' module to create and control child processes.
+const express = require('express'); //Import the Express framework to create a router for handling HTTP requests.
+const router = express.Router(); //Create a new router instance for defining routes.
 const Patient = require('../models/patientdb');
 const Fetus = require('../models/fetusdb');
 const main1 = require('../controllers/PostnatalGrowthExaminingFormulas');
@@ -8,7 +8,7 @@ const main2 = require('../controllers/PerinatalGrowthExamining');
 const unLinkFiles = require('../controllers/unlinkFiles');
 const cryptData = require('../controllers/crypto');
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs'); //Import the 'fs' module for file system operations.
 let camTestResult;
 
 
@@ -40,7 +40,7 @@ const executePythonScript = (id) => {
     });
   });
 };
-
+//Delete video and JSON files associated with the given ID
 router.get('/deleteFiles/:identification', async(req, res)=>{
     const id =req.params.identification;
       unLinkFiles.unLinkFiles('./Emotion_Detection_FER/videos/'+ id+'.mp4');
@@ -56,6 +56,7 @@ router.get('/finalResult/:identification', async (req, res) => {
 
   console.log(`Received request for ID: '${id}' (Type: ${typeof id})`);
   try {
+    //Retrieve encrypted patient and fetus data from the database
     const PatientData = await Patient.findOne({ id: cryptData.encrypt(id) });
     const FetusData = await Fetus.findOne({ id: cryptData.encrypt(id) });
 
@@ -66,10 +67,10 @@ router.get('/finalResult/:identification', async (req, res) => {
     if (!FetusData) {
       return res.status(404).json({ error: 'Fetus not found' });
     }
-
+    //Destructure relevant fields from the patient and fetus data
     const { gender, birthWeight, ageInMonth, Month6Weight, Month12Weight, Month18Weight, Month24Weight, Month36Weight, Month48Weight, Month60Weight, alergics} = PatientData;
     const { birthWeightFetus, week16Mass, week16Length, week32Mass, week32Length } = FetusData;
-
+    //Process the data using the main functions from the controllers
     const formulasResult = main1.main(id, gender, birthWeight, Month6Weight, Month12Weight, Month18Weight, Month24Weight, Month36Weight, Month48Weight, Month60Weight);
     const fetusResult = main2.main(id, birthWeightFetus, week16Mass, week16Length, week32Mass, week32Length);
 
@@ -86,6 +87,7 @@ router.get('/finalResult/:identification', async (req, res) => {
 
       let affect;
       const selectedLines = myArray.slice(3, 5);
+      //Analyze the emotion detection results and determine if there is a high probability of FTT
       if (
         (selectedLines[0].indexOf("the upper") > 0) &&
         (
@@ -100,7 +102,7 @@ router.get('/finalResult/:identification', async (req, res) => {
       } else {
         affect = "There are a high probability that the emotion detection test does not affect the result!";
       }
-
+      //Include the emotion detection results and the affect analysis in the response
       responseToClient = JSON.stringify({ formulasResult, fetusResult, selectedLines, affect, alergics});
     }
    
@@ -110,7 +112,7 @@ router.get('/finalResult/:identification', async (req, res) => {
       { $set: { "result": responseToClient } },
       { new: true, upsert: true }
     );
-    
+    //Send the final response to the client
     res.json(JSON.parse(responseToClient));
 
   } catch (err) {
