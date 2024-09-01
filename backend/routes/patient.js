@@ -1,40 +1,45 @@
-const express = require('express');
-const router = express.Router();
-const Patient = require('../models/patientdb');
-const bcrypt = require('bcrypt');
-const cryptData = require('../controllers/crypto');
-const saltRounds = 12;
-// Handle POST request to '/DiagnoseForm'
-router.post('/DiagnoseForm', async (req, res) => {
-    const patient = req.body;
-    let fieldsToUpdate;
-    console.log(req.body);
-    try{
+const express = require('express'); // Import the Express module
+const router = express.Router(); // Create an Express router instance
+const Patient = require('../models/patientdb'); // Import the Patient model for interacting with the patient database
+const bcrypt = require('bcrypt'); // Import bcrypt for password hashing (though it doesn't seem used here)
+const cryptData = require('../controllers/crypto'); // Import the crypto controller for encryption and decryption
+const saltRounds = 12; // Define the number of salt rounds for bcrypt (again, not used in the current code)
 
-        const patients = await Patient.find();
+// Handle POST request to '/DiagnoseForm' for creating or updating patient data
+router.post('/DiagnoseForm', async (req, res) => {
+    const patient = req.body; // Extract the patient data from the request body
+    let fieldsToUpdate; // Variable to hold the name of the field to update based on age in months
+    console.log(req.body); // Log the request body for debugging
+
+    try {
+        const patients = await Patient.find(); // Retrieve all patients from the database
         let document = null;
+
+        // Iterate through the list of patients to find the one with the matching decrypted ID
         for (const obj of patients) {
             try {
                 // Decrypt the stored ID
                 const decryptedId = cryptData.decrypt(obj.id);
                 console.log(`Decrypted ID from DB: ${decryptedId}`);
 
-                // Compare the decrypted ID with the plaintext ID
-                if (decryptedId === identification) {
+                // Compare the decrypted ID with the plaintext ID from the request
+                if (decryptedId === patient.identification) { // Fixed to use patient.identification instead of undefined 'identification'
                     document = obj;
                     console.log("Patient has been found");
-                    break;
+                    break; // Exit the loop once the match is found
                 }
             } catch (decryptError) {
-                console.error('Decryption error:', decryptError);
-                continue;
+                console.error('Decryption error:', decryptError); // Log any decryption errors
+                continue; // Continue to the next iteration if decryption fails
             }
         }
-        if(!document){
-            document= new Patient({
-                id: cryptData.encrypt(patient.identification),
+
+        if (!document) {
+            // If no existing document is found, create a new patient object
+            document = new Patient({
+                id: cryptData.encrypt(patient.identification), // Encrypt the identification before saving
                 birthDate: patient.birthDate,
-                ageInMonth : patient.ageInMonths,
+                ageInMonth: patient.ageInMonths,
                 alergics: patient.alergics,
                 motherHeight: patient.motherHeight,
                 motherWeight: patient.motherWeight,
@@ -42,15 +47,16 @@ router.post('/DiagnoseForm', async (req, res) => {
                 gender: patient.gender,
                 birthWeight: patient.birthWeight,
                 Month6Weight: patient.Month6Weight,
-                Month12Weight:patient.Month12Weight,
+                Month12Weight: patient.Month12Weight,
                 Month18Weight: patient.Month18Weight,
                 Month24Weight: patient.Month24Weight,
                 Month36Weight: patient.Month36Weight,
                 Month48Weight: patient.Month48Weight,
                 Month60Weight: patient.Month60Weight
             });
-        }else{
-            switch(patient.ageInMonths){
+        } else {
+            // Determine which field to update based on the patient's age in months
+            switch (patient.ageInMonths) {
                 case 0:
                 case 1:
                 case 2:
@@ -64,7 +70,7 @@ router.post('/DiagnoseForm', async (req, res) => {
                 case 8:
                 case 9:
                 case 10:
-                case 11:   
+                case 11:
                     fieldsToUpdate = 'Month6Weight';
                     break;
                 case 12:
@@ -128,73 +134,74 @@ router.post('/DiagnoseForm', async (req, res) => {
                 case 60:
                     fieldsToUpdate = 'Month60Weight';
                     break;
-                defualt:
-                    console.log('sorry there is no fields to update');
+                default:
+                    console.log('Sorry, there are no fields to update');
             }
             console.log(fieldsToUpdate);
-            if(fieldsToUpdate){
+
+            // Update the specific field in the document if applicable
+            if (fieldsToUpdate) {
                 document[fieldsToUpdate] = patient.weight;
-                document['alergics'] = patient.alergics;
+                document['alergics'] = patient.alergics; // Update allergens information as well
             }
-            
         }
+
+        // Save the updated or new document back to the database
         await document.save();
-        return res.json(document);
-    }catch(err){
-        console.error(err.message);
-        res.status(500).send('Server Error');
+        return res.json(document); // Respond with the updated patient document
+
+    } catch (err) {
+        console.error(err.message); // Log any errors that occur during the process
+        res.status(500).send('Server Error'); // Respond with a server error if something goes wrong
     }
-    res.status(201).json({ message: "New user added", type: "success"});
 
+    res.status(201).json({ message: "New user added", type: "success" }); // (This line is unreachable due to the return statement above)
 });
 
-
-
-router.post('/getID',async (req,res)=>{
-    const patient = req.body;
-    console.log(req.body);
-    res.status(201).json({message:"Succesfully",type:  "success"});
-
+// Handle POST request to '/getID' for debugging or testing purposes
+router.post('/getID', async (req, res) => {
+    const patient = req.body; // Extract the patient data from the request body
+    console.log(req.body); // Log the request body for debugging
+    res.status(201).json({ message: "Successfully", type: "success" }); // Respond with a success message
 });
 
-
+// Handle GET request to retrieve a patient by their identification
 router.get('/by-identification/:identification', async (req, res) => {
-    const { identification } = req.params;
+    const { identification } = req.params; // Extract the identification from the request parameters
 
     try {
-        const patients = await Patient.find();
+        const patients = await Patient.find(); // Retrieve all patients from the database
         let patient = null;
 
+        // Iterate through the list of patients to find the one with the matching decrypted ID
         for (const obj of patients) {
             try {
                 // Decrypt the stored ID
                 const decryptedId = cryptData.decrypt(obj.id);
                 console.log(`Decrypted ID from DB: ${decryptedId}`);
 
-                // Compare the decrypted ID with the plaintext ID
+                // Compare the decrypted ID with the plaintext ID from the request
                 if (decryptedId === identification) {
                     patient = obj;
                     console.log("Patient has been found");
-                    break;
+                    break; // Exit the loop once the match is found
                 }
             } catch (decryptError) {
-                console.error('Decryption error:', decryptError);
-                continue;
+                console.error('Decryption error:', decryptError); // Log any decryption errors
+                continue; // Continue to the next iteration if decryption fails
             }
         }
 
         if (!patient) {
-            console.log("Patient not found");
-            return res.status(404).send('Patient not found');
+            console.log("Patient not found"); // Log if no matching patient is found
+            return res.status(404).send('Patient not found'); // Respond with a 404 if no matching patient is found
         }
 
-        res.json(patient);
+        res.json(patient); // Respond with the found patient data
     } catch (error) {
-        console.error('Error in /by-identification/:identification route:', error);
-        res.status(500).send('Server error');
+        console.error('Error in /by-identification/:identification route:', error); // Log any errors during the retrieval process
+        res.status(500).send('Server error'); // Respond with a server error if something goes wrong
     }
 });
 
-
-  
-module.exports = router;
+module.exports = router; // Export the router for use in other parts of the application
