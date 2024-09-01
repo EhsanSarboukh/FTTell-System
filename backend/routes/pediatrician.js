@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt'); //Import bcrypt for hashing passwords and comparing hashes.
 const express = require('express');
 const router = express.Router();
 const Pediatrician = require('../models/pediatriciandb');
@@ -13,20 +13,25 @@ router.post('/register', async (req, res) => {
         return res.status(400).json({ message: "Missing required fields", type: "error" });
     }
     try{
+        
         let checkUser = await Pediatrician.findOne({username :pediatrician.username.toLowerCase()});
+        //Check if a pediatrician with the same username already exists
         if(!checkUser){
+            //Hash the password and ID using bcrypt
             const hashedPassword = await bcrypt.hash(pediatrician.password, Number(process.env.SALT_ROUNDS));
             const hashedId = await bcrypt.hash(pediatrician.id, Number(process.env.SALT_ROUNDS));
-    
+            //Create a new Pediatrician document with the hashed password and ID
             const newPediatrician = new Pediatrician({
                 id: hashedId,
                 username: pediatrician.username.toLowerCase(),
                 password: hashedPassword,
                 medicalClinic: pediatrician.medicalClinic
             });
-            const accessToken = jwtManager(newPediatrician);//new
-
+            //Generate a JWT access token for the new pediatrician
+            const accessToken = jwtManager(newPediatrician);
+            //Save the new pediatrician to the database
             const savedPediatrician = await newPediatrician.save();
+            //Respond with success and return the saved pediatrician and access token
             return res.status(200).json({ message: "New user added", type: "success", user: savedPediatrician,  accessToken: accessToken  });
         }
 
@@ -46,11 +51,12 @@ router.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
     try {
+        // Find the pediatrician by username in the database
         const foundUser = await Pediatrician.findOne({ username: username.toLowerCase()});
         if (!foundUser) {
             return res.status(401).send('Invalid username or password.');
         }
-
+        //Compare the provided password with the stored hashed password
         bcrypt.compare(password, foundUser.password, (err, result) => {
             if (err) {
                 console.error('Error during password comparison:', err);
@@ -60,9 +66,10 @@ router.post('/login', async (req, res) => {
             if (result) {
                 // Successful login
                 console.log("Successful login");
-               // res.send('home');
+               //Generate a JWT access token for the logged-in pediatrician
                 const accessToken = jwtManager(foundUser);
                 //success response...
+                //Respond with success, returning the access token and username
                 res.status(200).json({
                   status: "Success",
                   message: "User logged in successfully!",
@@ -75,7 +82,7 @@ router.post('/login', async (req, res) => {
             } else {
                 
                
-
+                //If the password comparison fails, send an unauthorized response
                 return res.status(401).send('Invalid username or password.');
             }
         });
