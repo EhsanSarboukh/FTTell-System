@@ -1,13 +1,14 @@
 import React from 'react';
-import '../styles/faq.css'; // Import your CSS file for styling
-import Header from './header';
-
+import '../styles/faq.css'; // Import the CSS file for styling
+import Header from './header'; // Import the Header component
 
 const FAQ = () => {
-  localStorage.setItem('canAccessRegister', 'false'); // Set flag in local storage
+  // Set a flag in local storage to restrict access to the registration page
+  localStorage.setItem('canAccessRegister', 'false'); 
+
   return (
     <div className="faq-page">
-      <Header/>
+      <Header />
       <main className="faq-content">
         <section className="hero">
           <div className="overlay">
@@ -45,4 +46,4 @@ const FAQ = () => {
   );
 };
 
-export default FAQ;
+export default FAQ; // Export the FAQ component
