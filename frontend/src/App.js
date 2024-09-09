@@ -20,6 +20,7 @@ import DemoPatientForm from './component/demoPatientForm';
 import DemoFinalResult from './component/demoFinalResult';
 import InsertCode from './component/insertCode';
 import RegisterPrivateRoute from './component/RegisterPrivateRoute';
+import Guide from './pages/guide';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/about" element={<About />} />
+                    <Route path="/guide" element={<Guide />} />
                     <Route path="/faq" element={<FAQ />} />
                     <Route path="/demoDiagnose" element={<Demo />} />
                     <Route path="/DemoPatientForm" element={<DemoPatientForm />} />
