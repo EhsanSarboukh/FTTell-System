@@ -61,6 +61,7 @@ export default function Header() {
         <nav className={`${styles.Nav} ${isNavVisible ? styles.active : ''}`}>
           <a href="/">Home</a>
           <a href="/faq">FAQ</a>
+          <a href="/guide">Tutorial</a>
           <div
             className={styles.Dropdown}
             onMouseEnter={() => setDropdownVisibility(true)}
